@@ -5,13 +5,13 @@ const models = require('./../models')
 
 // login Passport Middleware goes here
 passport.use("login", new LocalStrategy(username, password, next) => {
-            models.Users
-                .findOne({
-                        where: {
-                            username: username
-                        })
-                    .then(user => {
-                        // 
-                    })
+    models.Users
+        .findOne({
+                where: {
+                    username: username
                 })
+            .then(user => {
+                // 
             })
+        })
+})
