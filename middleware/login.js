@@ -1,3 +1,5 @@
+var express = require('express');
+var router = express.Router();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
@@ -63,3 +65,28 @@ passport.deserializeUser(function (id, next) {
         })
     })
 })
+
+// GET HOME PAGE
+// CHANGE TO REFLECT LOGIN PAGE ***
+router.get("/", function (req, res) {
+    res.render("index", {
+        title: "Express"
+    });
+});
+
+// POST TO CHECK TO SEE IF USER IS CORRECT USER
+router.post('/', passport.authenticate('login', {
+    successRedriect: '/activities',
+    failureRedirect: '/'
+}));
+
+// SIGNING UP PAGE
+router.post('/signup', passport.authenticate('signup', {
+    successRedriect: '/activities',
+    failureRedirect: '/'
+}))
+
+// NEED Logout Here
+
+// NEED restriced access on /activities/ to go here
+module.exports = router;
