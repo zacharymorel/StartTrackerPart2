@@ -6,8 +6,7 @@ const models = require('../models');
 
 
 
-// NEED restriced access on /activities to go here
-module.exports =  (passport) => {
+module.exports = (passport) => {
     // LOGIN PASSPORT AUTHENTICATION 
     // GET HOME LOGIN PAGE
     router.get("/", function (req, res) {
@@ -15,27 +14,27 @@ module.exports =  (passport) => {
             title: "Login Here!"
         });
     });
-    
+
     // POST LOGIN AUTHENTICATE CORRECT USER
     router.post('/', passport.authenticate('login', {
-        successRedriect: '/api/activities',
-        failureRedirect: '/'
+        successRedirect: '/api/activities',
+        failureRedirect: '/sigup'
     }));
-    
+
     // GET SIGNUP USER
     router.get('/signup', (req, res) => {
         res.render("signup", {
             title: 'Sign Up Here!'
         })
     })
-    
+
     // SIGNING UP POST
     router.post('/signup', passport.authenticate('signup', {
         successRedirect: '/api/activities',
         failureRedirect: '/'
     }))
     // NEED Logout Here
-    
+
     return router;
-    
+
 }

@@ -1,7 +1,7 @@
 const models = require('../models');
 const bcrypt = require('bcryptjs');
 
-const stratagies = {
+const strategies = {
     serialize: (user, next) => {
         return next(null, user.id)
     },
@@ -24,8 +24,9 @@ const stratagies = {
                     username: username
                 }
             })
+            // console.log(username)
             .then(user => {
-                // Check againt the password
+                // Check against the password
                 if (bcrypt.compareSync(password, user.passwordHash)) {
                     return next(null, {
                         username: user.username,
@@ -58,7 +59,6 @@ const stratagies = {
                 })
             })
             .catch(err => {
-                console.log("1", err);
                 next(err)
             })
     }
@@ -66,4 +66,4 @@ const stratagies = {
 
 
 
-module.exports = stratagies;
+module.exports = strategies;

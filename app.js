@@ -9,7 +9,7 @@ var session = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
 
 
-const strageties = require("./middleware/passport.strategies.postgres");
+const strategies = require("./middleware/passport.strategies.postgres");
 
 
 var users = require('./routes/users');
@@ -40,12 +40,12 @@ app.use(session({
 }));
 
 // FINDING THE USER AND AUTHENTICATING THEM
-passport.use('login', new LocalStrategy(strageties.login));
+passport.use('login', new LocalStrategy(strategies.login));
 
 // BUILDING NEW USER
-passport.use('signup', new LocalStrategy(strageties.signup));
-passport.serializeUser(strageties.serialize);
-passport.deserializeUser(strageties.deserialize);
+passport.use('signup', new LocalStrategy(strategies.signup));
+passport.serializeUser(strategies.serialize);
+passport.deserializeUser(strategies.deserialize);
 
 app.use(passport.initialize());
 app.use(passport.session());
