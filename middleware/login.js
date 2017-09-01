@@ -3,7 +3,7 @@ var router = express.Router();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
-const Users = require('./../models/users')
+const Users = require('./../models/users');
 
 // LOGIN PASSPORT AUTHENTICATION 
 passport.use('login', new LocalStrategy((username, password, next) => {
@@ -19,17 +19,17 @@ passport.use('login', new LocalStrategy((username, password, next) => {
                 return next(null, {
                     username: user.username,
                     id: user.id
-                })
+                });
             } else {
                 return next(null, false, {
                     message: "I'm sorry your not allowed in here!"
-                })
+                });
             }
         })
         .catch(err => {
             return next(err)
         })
-}))
+}));
 
 // BUILDING NEW USER
 passport.use('signup', new LocalStrategy((username, password, next) => {
@@ -47,11 +47,11 @@ passport.use('signup', new LocalStrategy((username, password, next) => {
         .catch(err =>
             next(err)
         )
-}))
+}));
 
 passport.serializeUser((user, next) => {
     next(null, user.id)
-})
+});
 
 passport.deserializeUser(function (id, next) {
     models.Users.findOne({
@@ -64,13 +64,12 @@ passport.deserializeUser(function (id, next) {
             id: user.id
         })
     })
-})
+});
 
-// GET HOME PAGE
-// CHANGE TO REFLECT LOGIN PAGE ***
+// GET HOME LOGIN PAGE
 router.get("/", function (req, res) {
-    res.render("index", {
-        title: "Express"
+    res.render("Login", {
+        title: "Login Here!"
     });
 });
 
@@ -80,11 +79,18 @@ router.post('/', passport.authenticate('login', {
     failureRedirect: '/'
 }));
 
-// SIGNING UP PAGE
+// GET SIGNUP USER
+router.get('/signup', (req, res) => {
+    res.render("signup", {
+        title: 'Sign Up Here!'
+    })
+})
+
+// SIGNING UP POST
 router.post('/signup', passport.authenticate('signup', {
     successRedriect: '/activities',
     failureRedirect: '/'
-}))
+}));
 
 // NEED Logout Here
 
