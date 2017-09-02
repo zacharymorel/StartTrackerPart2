@@ -26,17 +26,24 @@ const strategies = {
             })
             // console.log(username)
             .then(user => {
+                // Check to see User is NUll
+                if (user == null) {
+                    return next(null, false, {
+                        message: 'Incorrect credentials.'
+                    })
+                }
                 // Check against the password
                 if (bcrypt.compareSync(password, user.passwordHash)) {
                     return next(null, {
                         username: user.username,
                         id: user.id
                     });
-                } else {
-                    return next(null, false, {
-                        message: "I'm sorry your not allowed in here!"
-                    });
                 }
+                // else {
+                //     return next(null, false, {
+                //         message: "I'm sorry your not allowed in here!"
+                //     });
+                // }
             })
             .catch(err => {
                 return next(err)
@@ -56,11 +63,11 @@ const strategies = {
                 return next(null, {
                     username: user.username,
                     id: user.id
-                })
+                });
             })
-            .catch(err => {
-                next(err)
-            })
+        .catch(err => {
+            next(err)
+        })
     }
 };
 

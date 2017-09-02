@@ -18,23 +18,30 @@ module.exports = (passport) => {
     // POST LOGIN AUTHENTICATE CORRECT USER
     router.post('/', passport.authenticate('login', {
         successRedirect: '/api/activities',
-        failureRedirect: '/sigup'
+        failureRedirect: '/signup'
     }));
 
     // GET SIGNUP USER
     router.get('/signup', (req, res) => {
         res.render("signup", {
             title: 'Sign Up Here!'
-        })
-    })
+        });
+    });
 
     // SIGNING UP POST
     router.post('/signup', passport.authenticate('signup', {
         successRedirect: '/api/activities',
         failureRedirect: '/'
-    }))
-    // NEED Logout Here
+    }));
+
+    // LOGOUT HERE
+    router.get('/logout', (req, res) => {
+        // clear the sessions
+        req.session.destroy();
+        // logout of passport
+        req.logOut();
+        res.redirect('/');
+    });
 
     return router;
-
-}
+};
