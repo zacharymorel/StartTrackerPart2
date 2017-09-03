@@ -52,7 +52,7 @@ app.use(passport.session());
 
 
 
-app.use('/api', users);
+app.use('/api', users(users));
 app.use('/', login(passport));
 
 // catch 404 and forward to error handler

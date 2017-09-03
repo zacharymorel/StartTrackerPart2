@@ -1,7 +1,13 @@
 extends layout
 
 block content
-    h1= title
-    p Hello world
+    h1 Welcome #{title}
     form(action="/logout", method="get")
         button logout
+
+    form(action="/api/acitivites", method="post")
+        p Activity Name 
+            input(type="text", name="ActivityName", placeholder="Activity")
+        p Count of Activity     
+            input(type="text", name="Count", placeholder="miles, steps, etc.")
+        button Create New Activity
