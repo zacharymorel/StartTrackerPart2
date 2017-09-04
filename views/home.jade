@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 Welcome #{title}
+    form(action="/logout", method="get")
+        button logout
+    h3 Creating a new Activity
+    form(action="/api/activities", method="post")
+        p Activity Name 
+            input(type="text", name="ActivityName", placeholder="Activity")
+        button Create New Activity
+

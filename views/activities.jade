@@ -1,13 +1,15 @@
 extends layout
 
-block content
-    h1 Welcome #{title}
-    form(action="/logout", method="get")
-        button logout
+block content  
+    h3 Current list of Activities 
+    ul
+        each Activity in {Activities}
+            li= Activity
 
-    form(action="/api/acitivites", method="post")
-        p Activity Name 
-            input(type="text", name="ActivityName", placeholder="Activity")
-        p Count of Activity     
-            input(type="text", name="Count", placeholder="miles, steps, etc.")
-        button Create New Activity
+    H3 Adding details to your activity
+    form(action="/api/activites/complete", method="post")
+        p Count 
+            input(type="number", name="Count", placeholder="miles, steps, etc.")
+        button Add Count and Date
+
+    
