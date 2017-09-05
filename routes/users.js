@@ -42,32 +42,35 @@ module.exports = (users) => {
   })
 
   // DELETE A ACTIVITY ON HOME PAGE
-  router.post('/activities/:id/delete', (req, res) => {
-    const id = parseInt(req.params.id)
+  router.post('/activities/delete', (req, res) => {
+    const id = parseInt(req.body.activityId)
+    console.log(id)
     console.log(typeof (id))
     models.Activities.destroy({
       where: {
         id: id
       }
     }).then (whatsLeft => {
-      res.redirect('home')
+      res.redirect('/api/home')
     })
   })   
   // ^^^ **********BUGGED*********
 
   // ADD SPECIFIC TO ACTIVITYDONES TABLE
   router.post('/activities/tracking', (req, res) => {
-    const SpecificActivity = models.ActivitiesDone.build({
+    const SpecificActivity = models.ActivitiesDones.build({
       UserId: req.user.id,
       ActivityId: req.body.activityId,
       DateCompleted: Date.now(),
       Count: req.body.Count
     })
     SpecificActivity.save().then(SpecificActivities => {
-      res.redirect('home')
+      res.redirect('/api/home')
     })
   })
 
+  // CHANGE API ROUTES TO PROPER API CALLS
+  // RENDER/REDIRECT TO URL .I.E /HOME not /API/HOME
 
   return router;
 }

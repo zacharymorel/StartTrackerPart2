@@ -21,12 +21,12 @@ block content
     form(action="/api/activities/tracking", method="post")
         p Count  
             input(type="number", name="Count", placeholder="miles, steps, etc.")
-        input(.activityId, name="activityId", type="hidden")
+            input.activityId( name="activityId", type="hidden")
         p.selectedActivityName
         button Add Count and Date
 
     h3 Deleting an Activity for the list
-    form(action="/api/activities/:id/delete", method="post")
-        input(.activityId, name="activityId", type="hidden")
+    form(action="/api/activities/delete", method="post")
+        input.activityId(name="activityId", type="hidden")
         p.selectedActivityName
         button Delete

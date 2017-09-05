@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var ActivitiesDone = sequelize.define('ActivitiesDone', {
+  var ActivitiesDones = sequelize.define('ActivitiesDones', {
     UserId: DataTypes.INTEGER,
     ActivityId: DataTypes.INTEGER,
     DateCompleted: DataTypes.DATE,
@@ -12,5 +12,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return ActivitiesDone;
+  return ActivitiesDones;
 };
