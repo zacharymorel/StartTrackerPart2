@@ -4,6 +4,12 @@ const models = require('../models');
 
 module.exports = (users) => {
 
+  models.Activities.getAll = () => {
+    return models.Activities.findAll({
+      raw: true
+    })
+  }
+
   // RESTRICTED ACCESS CODE TO PREVENT NON USERS 
   // TO GO TO URL IF NOT LOGGED IN
   const restrictAccess = (req, res, next) => {
@@ -32,16 +38,11 @@ module.exports = (users) => {
   })
 
   // SHOW ACTIVITY ADDED AND TO SHOW FORM TO ADD SPECIFIC
-  router.get('/activities/complete', (req, res) => {
-    models.Activities.findAll().then(activities => {
-      let activites = activities
-      let Activities = []
-      activities.forEach(function(activity) {
-        Activities.push(activities.ActivityName)
-      })
-      // console.log(activities)
+  router.get('/activities/complete', restrictAccess,(req, res) => {
+    models.Activities.getAll().then(activities => {
       res.render('activities', {
-        Activities
+        user: req.user.username,
+        activities: activities
       })
     })
   })

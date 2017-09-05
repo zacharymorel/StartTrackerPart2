@@ -39,11 +39,6 @@ const strategies = {
                         id: user.id
                     });
                 }
-                // else {
-                //     return next(null, false, {
-                //         message: "I'm sorry your not allowed in here!"
-                //     });
-                // }
             })
             .catch(err => {
                 return next(err)
@@ -65,9 +60,9 @@ const strategies = {
                     id: user.id
                 });
             })
-        .catch(err => {
-            next(err)
-        })
+            .catch(err => {
+                next(err)
+            })
     }
 };
 

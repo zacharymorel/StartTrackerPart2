@@ -1,15 +1,19 @@
 extends layout
 
 block content  
-    h3 Current list of Activities 
+    h3 #{user}
+    h3 Current list of Activities
     ul
-        each Activity in {Activities}
-            li= Activity
+        each activity in activities
+            li= activity.ActivityName 
+                button(onclick="selectActivity(this)", data-id=activity.id, data-name=activity.ActivityName) select
 
     H3 Adding details to your activity
     form(action="/api/activites/complete", method="post")
-        p Count 
+        p Count  
             input(type="number", name="Count", placeholder="miles, steps, etc.")
+        input(id="activityId", name="activityId", type="hidden")
+        p(id="selectedActivityName")
         button Add Count and Date
 
     
