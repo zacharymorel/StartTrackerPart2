@@ -4,6 +4,7 @@ const models = require('../models');
 
 module.exports = (users) => {
 
+  // FINDALL FROM ACTIVITES TABLE MIDDLEWARE
   models.Activities.getAll = () => {
     return models.Activities.findAll({
       raw: true
@@ -20,10 +21,13 @@ module.exports = (users) => {
     }
   }
 
-  // ACTIVITES GET READ
-  router.get('/activities', restrictAccess, (req, res) => {
-    res.render('home', {
-      title: req.user.username,
+  // SHOW HOME, WHERE: ACTIVITY CREATE, LIST ALL ACTIVITIES, FORM TO ADD SPECIFIC
+  router.get('/home', restrictAccess, (req, res) => {
+    models.Activities.getAll().then(activities => {
+      res.render('home', {
+        title: req.user.username,
+        activities: activities
+      })
     })
   })
 
@@ -33,31 +37,37 @@ module.exports = (users) => {
       ActivityName: req.body.ActivityName
     })
     CreateActivity.save().then(activity => {
-      res.redirect('/api/activities/complete')
+      res.redirect('/api/home')
     })
   })
 
-  // SHOW ACTIVITY ADDED AND TO SHOW FORM TO ADD SPECIFIC
-  router.get('/activities/complete', restrictAccess,(req, res) => {
-    models.Activities.getAll().then(activities => {
-      res.render('activities', {
-        user: req.user.username,
-        activities: activities
-      })
+  // DELETE A ACTIVITY ON HOME PAGE
+  router.post('/activities/:id/delete', (req, res) => {
+    const id = parseInt(req.params.id)
+    console.log(typeof (id))
+    models.Activities.destroy({
+      where: {
+        id: id
+      }
+    }).then (whatsLeft => {
+      res.redirect('home')
     })
-  })
+  })   
+  // ^^^ **********BUGGED*********
 
   // ADD SPECIFIC TO ACTIVITYDONES TABLE
-  // router.post('/activites/complete', (req, res) => {
-  //   const completedActivity = models.ActivitiesDone.build({
-  //     UserId: req.user.username,
-  //     ActivityId: models.Activities.ActivityName,
-  //     Count: req.body.Count,
-  //     DateCompleted: Date.now()
-  //   })
-  //   completedActivity.save().then(completedActivity => {
-  //     res.render('activities')
-  //   })
-  // })
+  router.post('/activities/tracking', (req, res) => {
+    const SpecificActivity = models.ActivitiesDone.build({
+      UserId: req.user.id,
+      ActivityId: req.body.activityId,
+      DateCompleted: Date.now(),
+      Count: req.body.Count
+    })
+    SpecificActivity.save().then(SpecificActivities => {
+      res.redirect('home')
+    })
+  })
+
+
   return router;
 }

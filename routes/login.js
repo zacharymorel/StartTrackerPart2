@@ -17,7 +17,7 @@ module.exports = (passport) => {
 
     // POST LOGIN AUTHENTICATE CORRECT USER
     router.post('/', passport.authenticate('login', {
-        successRedirect: '/api/activities',
+        successRedirect: '/api/home',
         failureRedirect: '/signup'
     }));
 
@@ -30,7 +30,7 @@ module.exports = (passport) => {
 
     // SIGNING UP POST
     router.post('/signup', passport.authenticate('signup', {
-        successRedirect: '/api/activities',
+        successRedirect: '/api/home',
         failureRedirect: '/'
     }));
 
