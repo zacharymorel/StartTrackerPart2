@@ -4,29 +4,42 @@ block content
     h1 Welcome #{title}
     form(action="/logout", method="get")
         button logout
+    br
+    div
+        a(href="/useractivity") See the activites you are tracking
 
-    h3 Creating a new Activity
-    form(action="/api/activities", method="post")
-        p Activity Name 
-            input(type="text", name="ActivityName", placeholder="Activity")
-        button Create New Activity
+    div 
+        h3 Creating a new Activity
+        form(action="/api/activities", method="post")
+            p Activity Name 
+                input(type="text", name="ActivityName", placeholder="Activity")
+            button Create New Activity
 
-    h3 Current list of Activities able to add to your Activity List App
-    ul
-        each activity in activities
-            li= activity.ActivityName 
-                button(onclick="selectActivity(this)", data-id=activity.id, data-name=activity.ActivityName) select
+    div 
+        h3 Current list of Activities able to add to your Activity List App
+        ul
+            each activity in activities
+                li= activity.ActivityName 
+                    button(onclick="selectActivity(this)", data-id=activity.id, data-name=activity.ActivityName) select
 
-    h3 Adding details to your activity
-    form(action="/api/activities/tracking", method="post")
-        p Count  
-            input(type="number", name="Count", placeholder="miles, steps, etc.")
-            input.activityId( name="activityId", type="hidden")
-        p.selectedActivityName
-        button Add Count and Date
+    div 
+        h3 Adding details to your activity
+        form(action="/api/activities/tracking", method="post")
+            p Count  
+                input(type="number", name="Count", placeholder="miles, steps, etc.")
+                input.activityId( name="activityId", type="hidden")
+            p.selectedActivityName
+            button Add Count and Date
 
-    h3 Deleting an Activity for the list
-    form(action="/api/activities/delete", method="post")
-        input.activityId(name="activityId", type="hidden")
-        p.selectedActivityName
-        button Delete
+    div
+        h3 Deleting an Activity for the list
+        form(action="/api/activities/delete", method="post")
+            input.activityId(name="activityId", type="hidden")
+            p.selectedActivityName
+            button Delete
+        //- ^^^ MOVE THIS DOWN AND TIE IT THE ACTIVITY SPECIFIC PAGE
+    
+    
+
+
+

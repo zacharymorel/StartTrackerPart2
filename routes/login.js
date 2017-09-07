@@ -3,7 +3,7 @@ var router = express.Router();
 const bcrypt = require('bcryptjs');
 const models = require('../models');
 
-
+// AUTHENTICATION  SIGNUP & LOGIN PROCESS HERE
 
 
 module.exports = (passport) => {
@@ -17,7 +17,7 @@ module.exports = (passport) => {
 
     // POST LOGIN AUTHENTICATE CORRECT USER
     router.post('/', passport.authenticate('login', {
-        successRedirect: '/api/home',
+        successRedirect: '/home',
         failureRedirect: '/signup'
     }));
 
@@ -30,7 +30,7 @@ module.exports = (passport) => {
 
     // SIGNING UP POST
     router.post('/signup', passport.authenticate('signup', {
-        successRedirect: '/api/home',
+        successRedirect: '/home',
         failureRedirect: '/'
     }));
 

@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const models = require('../models');
 
+// INITIAL HOME PAGE WITH CRUD OF ACTIVITIES
+
 module.exports = (users) => {
 
   // FINDALL FROM ACTIVITES TABLE MIDDLEWARE
@@ -26,23 +28,23 @@ module.exports = (users) => {
     models.Activities.getAll().then(activities => {
       res.render('home', {
         title: req.user.username,
-        activities: activities
+        activities: activities,
       })
     })
   })
 
   // CREATE A NEW ACTIVITY
-  router.post('/activities', (req, res) => {
+  router.post('/api/activities', (req, res) => {
     const CreateActivity = models.Activities.build({
       ActivityName: req.body.ActivityName
     })
     CreateActivity.save().then(activity => {
-      res.redirect('/api/home')
+      res.redirect('/home')
     })
   })
 
   // DELETE A ACTIVITY ON HOME PAGE
-  router.post('/activities/delete', (req, res) => {
+  router.post('/api/activities/delete', (req, res) => {
     const id = parseInt(req.body.activityId)
     console.log(id)
     console.log(typeof (id))
@@ -50,14 +52,13 @@ module.exports = (users) => {
       where: {
         id: id
       }
-    }).then (whatsLeft => {
-      res.redirect('/api/home')
+    }).then(whatsLeft => {
+      res.redirect('/home')
     })
-  })   
-  // ^^^ **********BUGGED*********
+  })
 
   // ADD SPECIFIC TO ACTIVITYDONES TABLE
-  router.post('/activities/tracking', (req, res) => {
+  router.post('/api/activities/tracking', (req, res) => {
     const SpecificActivity = models.ActivitiesDones.build({
       UserId: req.user.id,
       ActivityId: req.body.activityId,
@@ -65,12 +66,10 @@ module.exports = (users) => {
       Count: req.body.Count
     })
     SpecificActivity.save().then(SpecificActivities => {
-      res.redirect('/api/home')
+      res.redirect('/home')
     })
   })
 
-  // CHANGE API ROUTES TO PROPER API CALLS
-  // RENDER/REDIRECT TO URL .I.E /HOME not /API/HOME
 
   return router;
 }
