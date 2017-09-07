@@ -4,19 +4,22 @@ const models = require('../models');
 
 module.exports = (userActivities) => {
 
-    // FINDALL FROM ACTIVITESDONES BY USERID TABLE MIDDLEWARE
-    models.ActivitiesDones.getAll = () => {
-        return models.ActivitiesDones.findAll({
-            raw: true
-        })
-    }
-
+    // FINDALL FROM ACTIVITESDONES TABLE BY USERID
     router.get('/useractivity', (req, res) => {
-        models.ActivitiesDones.getAll().then(activityDone => {
-            console.log("1", activityDone)
-            res.send('hello world')
+        models.ActivitiesDones.findAll({
+            where: {
+                UserId: req.user.id
+            },
+            raw: true
+        }).then(activitiesDones => {
+            res.render('userActivity', {
+                activitiesDones: activitiesDones
+            })
         })
     })
+    
+    
+    // To do: Find All activites tied to user specific id from ActivitiesDones 
 
     return router;
 }

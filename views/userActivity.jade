@@ -1,8 +1,11 @@
-//- extends layout
+extends layout
 
-//- block content
-//-     div
-//-         h3 List of Activitiies I am tracking
-//-         ul
-//-             each activity in activities
-//-                 li= activity.ActivityId 
+block content
+    div
+        h3 List of Activitiies I am tracking
+        ul
+            each activity in activitiesDones
+                li= activity.ActivityId
+                li= activity.Count
+                li= activity.DateCompleted
+                

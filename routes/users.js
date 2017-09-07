@@ -46,8 +46,6 @@ module.exports = (users) => {
   // DELETE A ACTIVITY ON HOME PAGE
   router.post('/api/activities/delete', (req, res) => {
     const id = parseInt(req.body.activityId)
-    console.log(id)
-    console.log(typeof (id))
     models.Activities.destroy({
       where: {
         id: id
