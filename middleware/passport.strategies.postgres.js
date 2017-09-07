@@ -39,6 +39,9 @@ const strategies = {
                         id: user.id
                     });
                 }
+                else {
+                    next(null, false)
+                }
             })
             .catch(err => {
                 return next(err)
