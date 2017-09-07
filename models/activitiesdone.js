@@ -4,8 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     UserId: DataTypes.INTEGER,
     ActivityId: DataTypes.INTEGER,
     DateCompleted: DataTypes.DATE,
-    Count: DataTypes.INTEGER,
-    ActivitiesDonesNAme: DataTypes.STRING
+    Count: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {

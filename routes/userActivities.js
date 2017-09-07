@@ -13,13 +13,18 @@ module.exports = (userActivities) => {
             raw: true
         }).then(activitiesDones => {
             res.render('userActivity', {
+                title: req.user.username,
                 activitiesDones: activitiesDones
             })
         })
+        .catch(err => {
+            res.send('I\'m sorry, it looks like you have no actitivies' )
+        })
     })
-    
-    
-    // To do: Find All activites tied to user specific id from ActivitiesDones 
-
+      
+    router.get('/useractivity/{id}', (req, res) => {
+        res.send('hello world')
+    })
+    // Wokring on individual pages rendering for user Tracking activities
     return router;
 }

@@ -2,10 +2,11 @@ extends layout
 
 block content
     div
+        h2= title
         h3 List of Activitiies I am tracking
         ul
             each activity in activitiesDones
-                li= activity.ActivityId
-                li= activity.Count
-                li= activity.DateCompleted
+                h4 Activity ID
+                a(href="/useractivity/{id}")
+                    li= activity.ActivityId
                 
