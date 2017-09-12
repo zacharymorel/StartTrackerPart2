@@ -23,6 +23,8 @@ module.exports = (userActivities) => {
     })
       
     router.get('/useractivity/{id}', (req, res) => {
+        
+        console.log(id)
         res.send('hello world')
     })
     // Wokring on individual pages rendering for user Tracking activities
