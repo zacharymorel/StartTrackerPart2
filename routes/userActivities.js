@@ -31,14 +31,38 @@ module.exports = (userActivities) => {
             })
     })
 
+    // FIND THE SPECIFIC ACTIVITY BY IT'S ACTIVITYID AND RENDER SPECIFIC PAGE
     router.get(`/useractivity/:ActivityId`, (req, res) => {
         const id = req.params.ActivityId
         const activityid = parseInt(id)
-        // console.log("2", typeof activityid, activityid)
-        res.render('specificUserActivity', {
-            title: activityid
+
+        models.ActivitiesDones.findOne({
+            where: {
+                ActivityId: activityid},
+                raw: true
+            }).then(activityInfo => {
+                const activity = {
+                    title: req.user.username,
+                    ActivityId: ActivityId,
+                    Count: activityInfo.Count,
+                    DateCompleted: activityInfo.DateCompleted,
+                    createdAt: activityInfo.createdAt,
+                    updatedAt: activityInfo.updatedAt
+                }
+            res.render('specificUserActivity', activity)
         })
     })
-    // Wokring on individual pages rendering for user Tracking activities
+
+    router.post('/api/activities/:id/delete', (req, res) => {
+        models.ActivitiesDones.destroy({
+            where: {
+                ActivityId: ActivityId
+            }
+        }).then(whatsLeft => {
+            res.redirect('/home')
+        })
+    })
+    // Left off here, need get delete working for specific Activity
+
     return router;
 }

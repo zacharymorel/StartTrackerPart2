@@ -2,4 +2,21 @@ extends layout
 
 block content
     h2= title
-
+    P= ActivityId
+        |   Activity Id
+    p= Count
+        |   Count: 
+    p= DateCompleted
+        |   DateCompleted:
+    p= createdAt
+        |   Created at:
+    p= updatedAt
+        |   Updated at:
+    
+    div
+        h3 Deleting an Activity for the list
+        form(action="/api/activities/:id/delete", method="post")
+            input.activityId(name="activityId", type="hidden")
+            p.selectedActivityName
+            button Delete
+    
