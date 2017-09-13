@@ -12,7 +12,7 @@ module.exports = (userActivities) => {
                 },
                 raw: true
             }).then(activitiesDones => {
-                // console.log('1', activitiesDones)
+                console.log('1', activitiesDones)
                 if (activitiesDones === []) {
                     res.render('noActivities', {
                         title: req.user.username,
@@ -53,9 +53,24 @@ module.exports = (userActivities) => {
         })
     })
 
+    // UPDATING USER SPECIFIC ACTIVITY
+    router.post('/api/activities/:id/update', (req, res) => {
+        const id = parseInt(req.body.ActivityId)
+        models.ActivitiesDones.update({
+            Count: req.body.Count
+        },
+        {
+            where: {
+                ActivityId: id
+            }        
+        }).then(updatedActivity => {
+            res.redirect('/useractivity')
+        })
+    })
+
+    // DELETEING SPECIFIC USER ACTIVITY
     router.post('/api/activities/:id/delete', (req, res) => {
         const id = parseInt(req.body.ActivityId)
-        console.log('1', typeof id)
         models.ActivitiesDones.destroy({
           where: {
             ActivityId: id

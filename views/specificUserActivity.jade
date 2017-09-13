@@ -2,6 +2,7 @@ extends layout
 
 block content
     h2= title
+
     P= ActivityId
         |   Activity Id
     p= Count
@@ -13,9 +14,18 @@ block content
     p= updatedAt
         |   Updated at:
     
+    div 
+        h3 Updating an Activity from your List
+        form(action="/api/activities/:id/update", method="post")
+            input(type="number", name="Count", value="#{Count}")
+            input(type="hidden", name="ActivityId", value="#{ActivityId}")
+            button.updateActivity(type="submit") Update
+         
+
     div
-        h3 Deleting an Activity for the list
+        h3 Deleting an Activity for your list
         form(action="/api/activities/:id/delete", method="post")
             input.ActivityDonesId(name="ActivityId", value="#{ActivityId}", type="hidden")
             button.deleteActivity(type="submit") Delete
     
+    a(href="/useractivity") Back to your Activities List
