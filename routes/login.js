@@ -24,7 +24,7 @@ module.exports = (passport) => {
     // GET SIGNUP USER
     router.get('/signup', (req, res) => {
         res.render("signup", {
-            title: 'Sign Up Here!'
+            title: 'Sign Up Here to use the StatTracker APP'
         });
     });
 

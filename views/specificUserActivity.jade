@@ -1,6 +1,11 @@
 extends layout
 
 block content
+    nav
+        a.home(href="/home") Home
+        a.yourActivities(href="/useractivity") Your Activities
+        a.logout(href="/logout") Logout
+
     h2= title
 
     P= ActivityId
@@ -28,4 +33,3 @@ block content
             input.ActivityDonesId(name="ActivityId", value="#{ActivityId}", type="hidden")
             button.deleteActivity(type="submit") Delete
     
-    a(href="/useractivity") Back to your Activities List

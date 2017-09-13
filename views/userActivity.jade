@@ -1,9 +1,12 @@
 extends layout
 
 block content
+    nav
+        a.home(href="/home") Home
+        a.yourActivities(href="/useractivity") Your Activities
+        a.logout(href="/logout") Logout
     div
         h2= title
-        a(href="/home") Home
         h3 List of Activitiies I am tracking
         ul
             each activity in activitiesDones

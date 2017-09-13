@@ -1,19 +1,18 @@
 extends layout
 
 block content
+    nav
+        a.home(href="/home") Home
+        a.yourActivities(href="/useractivity") Your Activities
+        a.logout(href="/logout") Logout
     h1 Welcome #{title}
-    form(action="/logout", method="get")
-        button logout
-    br
-    div
-        a(href="/useractivity") See the activites you are tracking
 
     div 
         h3 Creating a new Activity
         form(action="/api/activities", method="post")
             p Activity Name 
                 input(type="text", name="ActivityName", placeholder="Activity")
-            button Create New Activity
+            button Create Activity
 
     div 
         h3 Current list of Activities able to add to your Activity List App
@@ -21,6 +20,8 @@ block content
             each activity in activities
                 li= activity.ActivityName 
                     button(onclick="selectActivity(this)", data-id=activity.id, data-name=activity.ActivityName) select
+    div 
+        p Select from above to add an activity to track or delete an activity from the possibilities ypu can pick from.
 
     div 
         h3 Adding details to your activity

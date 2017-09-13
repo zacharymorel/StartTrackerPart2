@@ -1,8 +1,9 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Your StatTracker 
+
+  h2= title
   form(action="/", method="post")
     p Username: 
       input(type="text", name="username", placeholder="username")
