@@ -13,3 +13,11 @@ const selectActivity  = (e) => {
     })
 
 }
+
+const selectActivityDonesId = (e) => {
+    let ActivityDonesId = e.dataset.ActivityId;
+
+    let It = document.querySelector('.ActivityDonesId')
+    console.log('2', It)
+    It.setAttribute('value', ActivityDonesId);
+}

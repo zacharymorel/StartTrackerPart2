@@ -16,7 +16,7 @@ block content
     div
         h3 Deleting an Activity for the list
         form(action="/api/activities/:id/delete", method="post")
-            input.activityId(name="activityId", type="hidden")
-            p.selectedActivityName
-            button Delete
+            input.ActivityDonesId(name="ActivityDonesId", type="hidden")
+            p.selectActivityDonesId
+            button(onclick="selectActivityDonesId(this)", data-id=ActivityId) Delete
     

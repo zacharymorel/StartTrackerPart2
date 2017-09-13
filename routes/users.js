@@ -68,6 +68,5 @@ module.exports = (users) => {
     })
   })
 
-
   return router;
 }

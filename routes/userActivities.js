@@ -12,7 +12,7 @@ module.exports = (userActivities) => {
                 },
                 raw: true
             }).then(activitiesDones => {
-                console.log('1', activitiesDones)
+                // console.log('1', activitiesDones)
                 if (activitiesDones === []) {
                     res.render('noActivities', {
                         title: req.user.username,
@@ -43,7 +43,7 @@ module.exports = (userActivities) => {
             }).then(activityInfo => {
                 const activity = {
                     title: req.user.username,
-                    ActivityId: ActivityId,
+                    ActivityId: activityInfo.ActivityId,
                     Count: activityInfo.Count,
                     DateCompleted: activityInfo.DateCompleted,
                     createdAt: activityInfo.createdAt,
@@ -54,14 +54,16 @@ module.exports = (userActivities) => {
     })
 
     router.post('/api/activities/:id/delete', (req, res) => {
+        const id = parseInt(req.body.activityId)
+        console.log('1', typeof id)
         models.ActivitiesDones.destroy({
-            where: {
-                ActivityId: ActivityId
-            }
+          where: {
+            id: id
+          }
         }).then(whatsLeft => {
-            res.redirect('/home')
+          res.redirect('/home')
         })
-    })
+      })
     // Left off here, need get delete working for specific Activity
 
     return router;
