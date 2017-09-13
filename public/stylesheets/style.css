@@ -3,10 +3,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
+  color: black;
 }
 
 a {
-  color: #00B7FF;
+  color: rgb(0, 119, 255);
   text-decoration: none;
 }
 
@@ -16,6 +17,19 @@ nav {
   justify-content: flex-end;
   background-color: rgb(94, 122, 245);
   padding: 1em;
+}
+
+hr {
+  margin-bottom: .1em;
+}
+
+h3 {
+  margin-top: .1em;
+}
+
+ul {
+  padding-left: 1.75em;
+  margin-top: .5em;
 }
 
 a:hover {
@@ -28,7 +42,7 @@ a:hover {
   color: white;
 }
 
-.home {
+.Home {
   margin-right: 1em;
   text-decoration: none;
   color: white;
@@ -49,6 +63,7 @@ a:hover {
 .loginAndSignUp {
   background-color: rgb(236, 232, 232);
   height: 100vh;
+  padding: .5em;  
 }
 
 .welcome {
@@ -57,8 +72,22 @@ a:hover {
 
 .List {
   margin-top: 0.25em;
+  margin-bottom: .25em;
 }
 
-.loginHOne {
+.loginAndSignUpTitle {
   margin-top: 0;
+}
+
+.activityClick {
+  margin-right: 1em;
+}
+
+.home {
+  margin-top: 3em;
+}
+
+.userActId {
+  margin-bottom: .25em;
+  margin-top: 1em;
 }

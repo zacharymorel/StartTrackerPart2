@@ -2,13 +2,13 @@ extends layout
 
 block content
   div.loginAndSignUp
-    h1.loginHOne Your StatTracker 
+    h1.loginAndSignUpTitle Your StatTracker 
 
     h2= title
     form(action="/", method="post")
-      p Username: 
+      p Username  
         input(type="text", name="username", placeholder="username")
-      p Password:  
+      p Password  
         input(type="text", name="password", placeholder="password")
       button(type="submit")
         span Login

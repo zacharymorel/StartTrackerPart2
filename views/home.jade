@@ -2,31 +2,34 @@ extends layout
 
 block content
     nav
-        a.home(href="/home") Home
+        a.Home(href="/home") Home
         a.yourActivities(href="/useractivity") Your Activities
         a.logout(href="/logout") Logout
 
     div.everything
         h1.welcome Welcome #{title}
 
-        div 
+        div.home 
+            hr  
             h3 Creating a new Activity
             form(action="/api/activities", method="post")
                 p Activity Name 
                     input(type="text", name="ActivityName", placeholder="Activity")
                 button Create Activity
 
-            div 
-                h3 Current list of Activities able to add to your Activity List App
-                ul
-                    each activity in activities
-                        li= activity.ActivityName 
-                            button(onclick="selectActivity(this)", data-id=activity.id, data-name=activity.ActivityName) select
-        div 
-            p Select from above to add an activity to track or delete an activity from the possibilities ypu can pick from.
+        div.home 
+            hr
+            h3 Current list of Activities able to add to your Activity List App
+            table
+                each activity in activities
+                    td= activity.ActivityName 
+                    td
+                        button.activityClick(onclick="selectActivity(this)", data-id=activity.id, data-name=activity.ActivityName) select
 
-        div 
+        div.home 
+            hr
             h3 Adding details to your activity
+            p Select from above to add an activity to track or delete an activity.
             form(action="/api/activities/tracking", method="post")
                 p Count  
                     input(type="number", name="Count", placeholder="miles, steps, etc.")
@@ -34,8 +37,9 @@ block content
                 p.selectedActivityName
                 button Add Count and Date
 
-        div
-            h3 Deleting an Activity for the list
+        div.home
+            hr
+            h3 Deleting an Activity From the Current List
             form(action="/api/activities/delete", method="post")
                 input.activityId(name="activityId", type="hidden")
                 p.selectedActivityName
