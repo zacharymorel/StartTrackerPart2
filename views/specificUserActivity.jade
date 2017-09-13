@@ -7,10 +7,9 @@ block content
         a.logout(href="/logout") Logout
     
     div.everything
-        h2= title
 
-        P= ActivityId
-            |   Activity Id
+        h2= ActivityId
+            |   Activity 
         p= Count
             |   Count: 
         p= DateCompleted
@@ -20,17 +19,17 @@ block content
         p= updatedAt
             |   Updated at:
     
-        div 
-            h3 Updating an Activity from your List
+        div.specificActivityList 
+            h3 Updating this Activity
             form(action="/api/activities/:id/update", method="post")
                 input(type="number", name="Count", value="#{Count}")
                 input(type="hidden", name="ActivityId", value="#{ActivityId}")
                 button.updateActivity(type="submit") Update
          
 
-        div
-            h3 Deleting an Activity for your list
+        div.specificActivityList
+            h3 Deleting this Activity for your tracked list
             form(action="/api/activities/:id/delete", method="post")
                 input.ActivityDonesId(name="ActivityId", value="#{ActivityId}", type="hidden")
-                button.deleteActivity(type="submit") Delete
+                button.delete(type="submit") Delete
     

@@ -15,7 +15,7 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  background-color: rgb(94, 122, 245);
+  background-color: rgb(0, 119, 255);
   padding: 1em;
 }
 
@@ -30,6 +30,13 @@ h3 {
 ul {
   padding-left: 1.75em;
   margin-top: .5em;
+}
+
+button {
+  background-color: rgb(65, 123, 247);
+  border-radius: .25em;
+  color: white;
+  border-style: none;
 }
 
 a:hover {
@@ -81,6 +88,7 @@ a:hover {
 
 .activityClick {
   margin-right: 1em;
+  background-color: rgb(131, 238, 145);
 }
 
 .home {
@@ -89,5 +97,17 @@ a:hover {
 
 .userActId {
   margin-bottom: .25em;
-  margin-top: 1em;
+  margin-top: 1.5em;
+}
+
+.specificActivityList {
+  margin-top: 1.5em;
+}
+
+.updateActivity {
+  margin-left: .5em;
+}
+
+.delete {
+  background-color: red;
 }

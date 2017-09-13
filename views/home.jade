@@ -15,7 +15,7 @@ block content
             form(action="/api/activities", method="post")
                 p Activity Name 
                     input(type="text", name="ActivityName", placeholder="Activity")
-                button Create Activity
+                button.create Create Activity
 
         div.home 
             hr
@@ -43,7 +43,7 @@ block content
             form(action="/api/activities/delete", method="post")
                 input.activityId(name="activityId", type="hidden")
                 p.selectedActivityName
-                button Delete
+                button.delete Delete
     
     
 
