@@ -39,3 +39,26 @@ a:hover {
   margin-right: .5em;
   color: white;
 }
+
+.everything {
+  padding: .5em;
+  background-color: rgb(236, 232, 232);
+  height: 100vh;
+}
+
+.loginAndSignUp {
+  background-color: rgb(236, 232, 232);
+  height: 100vh;
+}
+
+.welcome {
+  margin-top: 0.25em;
+}
+
+.List {
+  margin-top: 0.25em;
+}
+
+.loginHOne {
+  margin-top: 0;
+}

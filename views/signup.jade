@@ -1,11 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  form(action="/signup", method="post")
-    p Username: 
-      input(type="text", name="username", placeholder="username")
-    p Password:  
-      input(type="text", name="password", placeholder="password")
-    button(type="submit")
-      span Sign Up
+  div.loginAndSignUp
+    h1= title
+    form(action="/signup", method="post")
+      p Username: 
+        input(type="text", name="username", placeholder="username")
+      p Password:  
+        input(type="text", name="password", placeholder="password")
+      button(type="submit")
+        span Sign Up

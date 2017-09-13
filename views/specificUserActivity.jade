@@ -5,31 +5,32 @@ block content
         a.home(href="/home") Home
         a.yourActivities(href="/useractivity") Your Activities
         a.logout(href="/logout") Logout
-
-    h2= title
-
-    P= ActivityId
-        |   Activity Id
-    p= Count
-        |   Count: 
-    p= DateCompleted
-        |   DateCompleted:
-    p= createdAt
-        |   Created at:
-    p= updatedAt
-        |   Updated at:
     
-    div 
-        h3 Updating an Activity from your List
-        form(action="/api/activities/:id/update", method="post")
-            input(type="number", name="Count", value="#{Count}")
-            input(type="hidden", name="ActivityId", value="#{ActivityId}")
-            button.updateActivity(type="submit") Update
+    div.everything
+        h2= title
+
+        P= ActivityId
+            |   Activity Id
+        p= Count
+            |   Count: 
+        p= DateCompleted
+            |   DateCompleted:
+        p= createdAt
+            |   Created at:
+        p= updatedAt
+            |   Updated at:
+    
+        div 
+            h3 Updating an Activity from your List
+            form(action="/api/activities/:id/update", method="post")
+                input(type="number", name="Count", value="#{Count}")
+                input(type="hidden", name="ActivityId", value="#{ActivityId}")
+                button.updateActivity(type="submit") Update
          
 
-    div
-        h3 Deleting an Activity for your list
-        form(action="/api/activities/:id/delete", method="post")
-            input.ActivityDonesId(name="ActivityId", value="#{ActivityId}", type="hidden")
-            button.deleteActivity(type="submit") Delete
+        div
+            h3 Deleting an Activity for your list
+            form(action="/api/activities/:id/delete", method="post")
+                input.ActivityDonesId(name="ActivityId", value="#{ActivityId}", type="hidden")
+                button.deleteActivity(type="submit") Delete
     

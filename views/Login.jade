@@ -1,16 +1,17 @@
 extends layout
 
 block content
-  h1 Your StatTracker 
+  div.loginAndSignUp
+    h1.loginHOne Your StatTracker 
 
-  h2= title
-  form(action="/", method="post")
-    p Username: 
-      input(type="text", name="username", placeholder="username")
-    p Password:  
-      input(type="text", name="password", placeholder="password")
-    button(type="submit")
-      span Login
-  br
-  a(href="/signup")
-    span Create your Account
+    h2= title
+    form(action="/", method="post")
+      p Username: 
+        input(type="text", name="username", placeholder="username")
+      p Password:  
+        input(type="text", name="password", placeholder="password")
+      button(type="submit")
+        span Login
+    br
+    a(href="/signup")
+      span Create your Account
