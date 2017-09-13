@@ -54,11 +54,11 @@ module.exports = (userActivities) => {
     })
 
     router.post('/api/activities/:id/delete', (req, res) => {
-        const id = parseInt(req.body.activityId)
+        const id = parseInt(req.body.ActivityId)
         console.log('1', typeof id)
         models.ActivitiesDones.destroy({
           where: {
-            id: id
+            ActivityId: id
           }
         }).then(whatsLeft => {
           res.redirect('/home')
