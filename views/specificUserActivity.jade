@@ -10,14 +10,21 @@ block content
 
         h2= ActivityId
             |   Activity 
-        p= Count
-            |   Count: 
-        p= DateCompleted
-            |   DateCompleted:
-        p= createdAt
-            |   Created at:
-        p= updatedAt
-            |   Updated at:
+        div
+            span Count: 
+            span=  Count 
+        
+        div 
+            span Date Completed: 
+            span= DateCompleted
+
+        div
+            span Created at:
+            span= createdAt
+
+        div
+            span Updated at:
+            span= updatedAt   
     
         div.specificActivityList 
             h3 Updating this Activity

@@ -4,6 +4,7 @@ TO ASK
 
 Need to figure out how to Query multiple tables in my route.get('/useractivity').
     - need to show activity name from Activities table for the route ('/useractivity')
+    - look to Sequelize 1 to many Assoications for my Database. It will work magically if it's on my models. 
 
 
 How to handle cannot get err property id of undefined if user session ends with server cut for a period of time? 
