@@ -4,9 +4,11 @@ var fs        = require('fs');
 var path      = require('path');
 var Sequelize = require('sequelize');
 var basename  = path.basename(module.filename);
-var env       = process.env.NODE_ENV || 'production'; 
+var env       = process.env.NODE_ENV || 'development'; 
+console.log(`Running in ${env} mode`)
 // || 'production' for heroku development
 var config    = require(__dirname + '/../config/config.json')[env];
+// *important* github should never have production credentials
 var db        = {};
 
 if (config.use_env_variable) {

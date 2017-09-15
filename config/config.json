@@ -15,10 +15,6 @@
   },
   "production": {
     "use_env_variable": "DATABASE_URL",
-    "username": "zachmorel",
-    "password": null,
-    "database": "postgresql-curved-94616",
-    "host": "https://stat-tracker-app.herokuapp.com/",
     "dialect": "postgres"
   }
 }
