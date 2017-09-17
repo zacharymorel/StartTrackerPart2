@@ -8,7 +8,10 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        // calls the associate function and then runs all the models 
+        ActivitiesDones.hasMany(models.Activities, {
+          foriegnKey: 'ActivityName' 
+          }) 
       }
     }
   });
