@@ -12,14 +12,13 @@ module.exports = function (sequelize, DataTypes) {
         this.setDataValue('passwordHash', hash);
       }
     }
-  }, {
-    classMethods: {
-      associate: function (models) {
-        Users.hasMany(models.ActivitiesDones, {
-        foriegnKey: 'User'
-          }) 
-      }
-    }
   });
+
+    Users.associate = (models) => {
+      Users.hasMany(models.ActivitiesDones, {
+      foriegnKey: 'User'
+      }) 
+    };
+
   return Users;
 };

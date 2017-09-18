@@ -5,15 +5,14 @@ module.exports = function(sequelize, DataTypes) {
     ActivityId: DataTypes.INTEGER,
     DateCompleted: DataTypes.DATE,
     Count: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
+  });
+  
+    ActivitiesDones.associate = (models) => {
         // calls the associate function and then runs all the models 
         ActivitiesDones.hasMany(models.Activities, {
           foriegnKey: 'ActivityName' 
           }) 
-      }
-    }
-  });
+      };
+
   return ActivitiesDones;
 };
