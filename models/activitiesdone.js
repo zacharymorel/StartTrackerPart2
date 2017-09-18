@@ -9,9 +9,8 @@ module.exports = function(sequelize, DataTypes) {
   
     ActivitiesDones.associate = (models) => {
         // calls the associate function and then runs all the models 
-        ActivitiesDones.hasMany(models.Activities, {
-          foriegnKey: 'ActivityName' 
-          }) 
+        models.ActivitiesDones.belongsTo(models.Activities)
+        models.ActivitiesDones.belongsTo(models.Users)
       };
 
   return ActivitiesDones;

@@ -5,9 +5,8 @@ TO ASK
 Need to figure out how to Query multiple tables in my route.get('/useractivity').
     - need to show activity name from Activities table for the route ('/useractivity')
     - look to Sequelize 1 to many Assoications for my Database. It will work magically if it's on my models. 
+    - Still trying to figure out why my 1:m isn't working correctly.
 
-    ** Need to drop and recreate Database because sequlezie doesn't automatically update tables.  ** 
-    -- ^^Done -> now need to reintergrate everything.
 
 Need to work on remote connection to heroku Databases with Postico
 

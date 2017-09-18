@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
+        model.Activities.hasMany(models.ActivitiesDone)
       }
     }
   });

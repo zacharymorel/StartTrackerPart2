@@ -15,9 +15,7 @@ module.exports = function (sequelize, DataTypes) {
   });
 
     Users.associate = (models) => {
-      Users.hasMany(models.ActivitiesDones, {
-      foriegnKey: 'User'
-      }) 
+      Users.hasMany(models.ActivitiesDones)
     };
 
   return Users;
