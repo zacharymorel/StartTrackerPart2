@@ -7,12 +7,13 @@ module.exports = (userActivities) => {
     // FINDALL FROM ACTIVITESDONES TABLE BY USERID
     router.get('/useractivity', (req, res) => {
         models.ActivitiesDones.findAll({
+                includes: [
+                    { model: models.Activities }
+                ],
                 where: {
                     UserId: req.user.id
-                },
-                raw: true
+                }
             }).then(activitiesDones => {
-                console.log('1', activitiesDones)
                 if (activitiesDones === []) {
                     res.render('noActivities', {
                         title: req.user.username,
