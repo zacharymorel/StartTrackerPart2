@@ -11,7 +11,7 @@ block content
         hr
         h4.userActId Activity ID
         ul
-            each activityDone in activitiesDones
+            each activityDone in myActivities
                 a(href=`/useractivity/${activityDone.ActivityId}`)
-                    li.activityList= activityDone.getActivity().then(activity => activity.ActivityName)
+                    li.activityList= activityDone.ActivityName
                 

@@ -7,27 +7,25 @@ module.exports = (userActivities) => {
     // FINDALL FROM ACTIVITESDONES TABLE BY USERID
     router.get('/useractivity', (req, res) => {
         models.ActivitiesDones.findAll({
-                includes: [
-                    { model: models.Activities }
-                ],
                 where: {
-                    UserId: req.user.id
+                    UserId: req.session.passport.user
                 }
-            }).then(activitiesDones => {
-                if (activitiesDones === []) {
-                    res.render('noActivities', {
-                        title: req.user.username,
-                        empty: 'It appears you don\'t have any activites your tracking.'
-                    })
-                } else {
+            }).then(ActivitiesDones => {
+                console.log('1', ActivitiesDones)
+                models.Activities.findAll({
+                    where: {
+                        id: ActivitiesDones.dataValues.ActivityId
+                    }
+                }).then(myActivities => {
+                    console.log('2', myActivities)
                     res.render('userActivity', {
-                        title: req.user.username,
-                        activitiesDones: activitiesDones
+                        ActivitiesDones: ActivitiesDones,
+                        myActivities: myActivities
                     })
-                }
-
+                })
             })
             .catch(err => {
+                console.log('3', err)
                 res.redirect('/')
             })
     })
@@ -39,17 +37,18 @@ module.exports = (userActivities) => {
 
         models.ActivitiesDones.findOne({
             where: {
-                ActivityId: activityid},
-                raw: true
-            }).then(activityInfo => {
-                const activity = {
-                    title: req.user.username,
-                    ActivityId: activityInfo.ActivityId,
-                    Count: activityInfo.Count,
-                    DateCompleted: activityInfo.DateCompleted,
-                    createdAt: activityInfo.createdAt,
-                    updatedAt: activityInfo.updatedAt
-                }
+                ActivityId: activityid
+            },
+            raw: true
+        }).then(activityInfo => {
+            const activity = {
+                title: req.user.username,
+                ActivityId: activityInfo.ActivityId,
+                Count: activityInfo.Count,
+                DateCompleted: activityInfo.DateCompleted,
+                createdAt: activityInfo.createdAt,
+                updatedAt: activityInfo.updatedAt
+            }
             res.render('specificUserActivity', activity)
         })
     })
@@ -59,11 +58,10 @@ module.exports = (userActivities) => {
         const id = parseInt(req.body.ActivityId)
         models.ActivitiesDones.update({
             Count: req.body.Count
-        },
-        {
+        }, {
             where: {
                 ActivityId: id
-            }        
+            }
         }).then(updatedActivity => {
             res.redirect('/useractivity')
         })
@@ -73,13 +71,13 @@ module.exports = (userActivities) => {
     router.post('/api/activities/:id/delete', (req, res) => {
         const id = parseInt(req.body.ActivityId)
         models.ActivitiesDones.destroy({
-          where: {
-            ActivityId: id
-          }
+            where: {
+                ActivityId: id
+            }
         }).then(whatsLeft => {
-          res.redirect('/home')
+            res.redirect('/home')
         })
-      })
+    })
     // Left off here, need get delete working for specific Activity
 
     return router;
