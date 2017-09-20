@@ -12,6 +12,6 @@ block content
         h4.userActId Activity ID
         ul
             each activityDone in myActivities
-                a(href=`/useractivity/${activityDone.ActivityId}`)
+                a(href=`/useractivity/${activityDone.id}`)
                     li.activityList= activityDone.ActivityName
                 
