@@ -12,5 +12,4 @@ Tech this APP uses:
   - CRUD
   - RestFul API's
   - Passport Authentication
-  - Express Generator
   - Heroku Platform
